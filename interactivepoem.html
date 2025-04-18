@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Longing Haiku</title>
+  <style>
+    html, body {
+      animation: pulse 3s infinite;
+      margin: 0;
+      padding: 0;
+      background-color: #0a0a0a;
+      font-family: Georgia, serif;
+      color: whitesmoke;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    
+
+    @keyframes pulse {
+      0%, 100% { background-color: #552c45; }
+      50% { background-color: #0a0a0a; }
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      margin: 15% 4rem 0 4rem;
+      font-size: 1.5rem;
+    }
+
+    .word {
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.6s ease;
+    }
+
+    .word:hover {
+      text-shadow: 0 0 10px #d8b4fe;
+      color: #e0bbff;
+    }
+
+    .last {
+      padding-bottom: 2rem;
+      border-bottom: 2px solid rgb(220, 200, 180);
+    }
+
+    .haiku {
+      display: none;
+      position: relative;
+      width: 90vw;
+      height: 90vh;
+    }
+
+    .line1 {
+      position: absolute;
+      top: 15%;
+      left: 5%;
+      font-size: 2rem;
+      letter-spacing: 0.3rem;
+      opacity: 0.7;
+      transform: rotate(-3deg);
+      animation: fadeIn 2s ease-out forwards;
+    }
+
+    .orbit {
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      width: 250px;
+      height: 250px;
+      margin-left: -125px;
+      margin-top: -125px;
+      animation: spin 15s linear infinite;
+    }
+
+    .heart-word {
+      position: absolute;
+      font-size: 1rem;
+      color: #d8b4fe;
+      animation: fadeIn 3s ease-out forwards;
+    }
+
+    .word1 { top: 20%; left: 20%; transform: rotate(-10deg); }
+    .word2 { top: 20%; right: 20%; transform: rotate(10deg); }
+    .word3 { top: 40%; left: 30%; }
+    .word4 { top: 40%; right: 30%; }
+    .word5 { top: 60%; left: 43%; }
+
+    .line3 {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.2rem;
+      text-align: center;
+      opacity: 0;
+      animation: glowFade 5s ease-in-out forwards;
+      animation-delay: 3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes glowFade {
+      0% { opacity: 0; text-shadow: none; }
+      50% { opacity: 0.5; text-shadow: 0 0 10px #c084fc; }
+      100% { opacity: 1; text-shadow: 0 0 20px #c084fc; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-container" id="grid">
+    <div class="word last">hands</div>
+    <div class="word">reach</div>
+    <div class="word last">through</div>
+    <div class="word">silence</div>
+    <div class="word">hearts</div>
+    <div class="word">in</div>
+    <div class="word last">orbit,</div>
+    <div class="word">never</div>
+    <div class="word last">touch</div>
+    <div class="word last">love waits in stillness</div>
+  </div>
+
+  <div class="haiku" id="poem">
+    <div class="line1">hands   reach   through   silence</div>
+    <div class="orbit">
+      <div class="heart-word word1">hearts</div>
+      <div class="heart-word word2">in</div>
+      <div class="heart-word word3">orbit,</div>
+      <div class="heart-word word4">never</div>
+      <div class="heart-word word5">touch</div>
+    </div>
+    <div class="line3">love waits in stillness</div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.word').forEach(word => {
+      word.addEventListener('click', () => {
+        document.getElementById('grid').style.display = 'none';
+        document.getElementById('poem').style.display = 'block';
+        document.body.classList.add('pulse');
+      });
+    });
+  </script>
+</body>
+</html>
